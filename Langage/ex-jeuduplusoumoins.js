@@ -11,28 +11,61 @@
  */
 'use strict';
 
-function Jeu() {
-    
-}
-
-var nbAlea = Math.floor(Math.random() * 101);
-
 var readline = require('readline');
 
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-function jouer() {
-    rl.question("What do you think of Node.js? ", function (answer) {
-        // TODO: Log the answer in a database
-        console.log("Thank you for your valuable feedback:", answer);
-
-        jouer();
-        //rl.close();
+function Jeu(options) {
+    options = options || {};
+    options.min = options.min || 0;
+    options.max = options.max || 100;
+    this.essaisMax = options.essaisMax || 7;
+    this.tentatives = [];
+    
+    
+    this.rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
     });
+    
+    this.nbAlea = Math.floor(Math.random() * (options.max - options.min + 1)) + options.min;
 }
-jouer();
+
+Jeu.prototype.jouer = function() {
+    
+    var that = this;
+    
+    if (this.tentatives.length) {
+        console.log('Déjà joué : ' + this.tentatives.join(', '));
+    }
+    
+    this.rl.question("Quel est le nombre ? ", function (saisie) {
+        
+        var nbSaisi = parseInt(saisie);
+        
+        if (isNaN(nbSaisi)) {
+            console.log('Il faut saisi un nombre');
+            return that.jouer();
+        }
+        
+        that.tentatives.push(nbSaisi);
+        
+        if (nbSaisi < that.nbAlea) {
+            console.log('Le nombre recherché est plus grand');
+            return that.jouer();
+        }
+        else if (nbSaisi > that.nbAlea) {
+            console.log('Le nombre recherché est plus petit');
+            return that.jouer();
+        }
+
+        if (nbSaisi === that.nbAlea) {
+            console.log('Gagné');
+            that.rl.close();
+        }
+    });
+};
+
+var jeu = new Jeu();
+jeu.jouer();
+
 
 
