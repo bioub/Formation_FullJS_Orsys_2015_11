@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function helloworld() {
+                var input = document.getElementsByName('prenom')[0];
+                var span = document.getElementsByTagName('span')[0];
+                span.firstChild.nodeValue = input.value;
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            Prénom :
+            <input type="text" name="prenom" id="prenom" oninput="helloworld();">
+        </div>
+        <p>
+            Bonjour <span id="result"> </span>
+        </p>
+    </body>
+</html>
