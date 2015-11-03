@@ -14,7 +14,7 @@ for (var i = 0; i < fichiers.length; i++) {
     var contenu = fs.readFileSync(src).toString();
     
     if (dest.endsWith('.html')) {
-        contenu = contenu.replace('src="jquery-1.11.3.js"', 'src="//code.jquery.com/jquery-1.11.3.min.js"');
+        contenu = contenu.replace('src="../bower_components/jquery/dist/jquery.js"', 'src="//code.jquery.com/jquery-1.11.3.min.js"');
     }
     
     fs.writeFileSync(dest, contenu);
