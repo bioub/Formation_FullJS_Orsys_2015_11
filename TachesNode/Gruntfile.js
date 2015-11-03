@@ -32,6 +32,7 @@ module.exports = function(grunt) {
         },
         clean: {
             dist: ["dist/*"],
+            tmp: [".tmp"],
         },
         cdnjquery: {
             dist: {}
@@ -60,6 +61,7 @@ module.exports = function(grunt) {
         'rev',
         'copy:dist',
         'usemin',
-        'cdnjquery'
+        'cdnjquery',
+        'clean:tmp'
     ]);
 }
