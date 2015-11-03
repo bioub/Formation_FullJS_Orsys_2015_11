@@ -4,7 +4,6 @@ var chalk = require('chalk');
 var router = require('./router.js');
 
 http.createServer(function (req, res) {
-
     router(req, res);
 
     
