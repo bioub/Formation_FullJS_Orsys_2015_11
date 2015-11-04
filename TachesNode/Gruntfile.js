@@ -2,9 +2,19 @@
 module.exports = function(grunt) {
     "use strict";
 
+    require('time-grunt')(grunt);
+
     require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin'
     });
+    //grunt.loadNpmTasks('grunt-contrib-clean');
+    //grunt.loadNpmTasks('grunt-usemin');
+    //grunt.loadNpmTasks('grunt-contrib-concat');
+    //grunt.loadNpmTasks('grunt-contrib-uglify');
+    //grunt.loadNpmTasks('grunt-contrib-cssmin');
+    //grunt.loadNpmTasks('grunt-rev');
+    //grunt.loadNpmTasks('grunt-contrib-copy');
+
 
     grunt.initConfig({
         useminPrepare: {
