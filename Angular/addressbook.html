@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="addressbook.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-app="addressBookModule">
+<div class="container" ng-controller="ContactCtrl">
+    <h2>AddressBook</h2>
+
+    <form ng-submit="ajouter()">
+        <div class="form-group">
+            <label>Prénom</label>
+            <input class="form-control" ng-model="newContact.prenom">
+        </div>
+        <div class="form-group">
+            <label>Nom</label>
+            <input class="form-control" ng-model="newContact.nom">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Ajouter</button>
+        </div>
+    </form>
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th>Nom complet</th>
+        </tr>
+        <tr ng-repeat="contact in contacts track by $index">
+            <td>
+                {{$index}} {{contact.prenom}} {{contact.nom}}
+                <span ng-if="$first">Premier</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

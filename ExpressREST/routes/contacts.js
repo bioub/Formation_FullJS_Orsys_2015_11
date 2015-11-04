@@ -7,12 +7,11 @@ var mongoose = require('mongoose');
 router.use(function (req, res, next) {
     var db = mongoose.createConnection('mongodb://localhost/addressbook');
 
-    req.db = db;
-
     db.on('error', function (err) {
         next(err);
     });
     db.once('open', function () {
+        req.Contact = db.model('contacts', contactSchema);
         next();
     });
 
@@ -33,7 +32,7 @@ router.use(function (req, res, next) {
 /* GET contacts list */
 router.get('/', function (req, res, next) {
 
-    var Contact = req.db.model('contacts', contactSchema);
+    var Contact = req.Contact;
 
     Contact.find(function (err, contacts) {
         if (err) {
@@ -46,13 +45,31 @@ router.get('/', function (req, res, next) {
 
 /* POST add contact */
 router.post('/', function (req, res, next) {
-    console.log(req.body);
-    res.json({prenom: 'Romain'});
+    var Contact = req.Contact;
+
+    var contact = new Contact(req.body);
+
+    contact.save(function (err) {
+        if (err) return next(err);
+
+        res.status(201); // CREATED
+        res.json(contact);
+    });
+
 });
 
+
+
 /* GET show contact */
-router.get('/:id', function (req, res, next) {
-    res.json({prenom: 'Romain'});
+router.get('/:id',  function (req, res, next) {
+    var id = req.params.id;
+    var Contact = req.Contact;
+
+    Contact.findOne({_id: id}, 'prenom nom', function(err, contact) {
+        if (err) return next(err);
+
+        res.json(contact);
+    });
 });
 
 /* GET modify contact */
