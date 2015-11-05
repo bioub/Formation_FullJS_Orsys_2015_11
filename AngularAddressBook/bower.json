@@ -1,0 +1,24 @@
+{
+  "name": "angular",
+  "homepage": "https://github.com/bioub/Formation_FullJS_Orsys_2015_11",
+  "authors": [
+    "bioub <romain.bohdanowicz@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7"
+  }
+}

@@ -1,0 +1,19 @@
+<bt-flash-alert></bt-flash-alert>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Nom complet</th>
+        <th>Actions</th>
+    </tr>
+    <tr ng-repeat="contact in contacts track by $index">
+        <td>
+            {{$index}} {{contact.prenom}} {{contact.nom}}
+            <span ng-if="$first">Premier</span>
+        </td>
+        <td>
+            <button class="btn btn-danger btn-xs" ng-click="delete(contact)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </td>
+    </tr>
+</table>
