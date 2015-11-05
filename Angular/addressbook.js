@@ -4,7 +4,7 @@
     var addressBookModule = angular.module('addressBookModule', ['ngResource']);
 
     addressBookModule.factory('Contact', ['$resource', function($resource) {
-        return $resource('http://localhost:3000/api/v1/contacts/:contactId', {contactId:'@id'});
+        return $resource('http://localhost:3000/api/v1/contacts/:contactId', {contactId:'@_id'});
 
     }]);
 

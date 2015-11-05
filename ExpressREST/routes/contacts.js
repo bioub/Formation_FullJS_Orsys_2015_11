@@ -79,7 +79,14 @@ router.post('/:id', function (req, res, next) {
 
 /* GET delete contact */
 router.delete('/:id', function (req, res, next) {
-    res.json({prenom: 'Romain'});
+    var id = req.params.id;
+    var Contact = req.Contact;
+
+    Contact.findOneAndRemove({_id: id}, 'prenom nom', function(err, contact) {
+        if (err) return next(err);
+        res.status(204);
+        res.json();
+    });
 });
 
 module.exports = router;
